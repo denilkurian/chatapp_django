@@ -1,0 +1,39 @@
+
+ .contacts {
+    background-color: #ffffff;
+    min-height: 600px;
+  }
+
+  .contact-table-scroll {
+    overflow-y: scroll;
+    height: 600px;
+  }
+
+  .message-area {
+    background-color: #e4e1de;
+    min-height: 600px;
+  }
+
+  .message-table-scroll {
+    overflow-y: scroll;
+    height: 73vh;
+  }
+
+  .message-box {
+    background-color: #f0f0f0;
+  }
+
+
+#message_input {
+border-radius:20px;
+color:#888888;
+box-shadow: 5px 5px;
+}
+
+
+#chat-message-submit{
+border-radius:50px;
+padding:15px 15px;
+}
+
+

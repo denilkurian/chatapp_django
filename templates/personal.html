@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css"
+  rel="stylesheet"
+/>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <style>
+
+
+ body {
+  background-color: white;
+  color: black;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.container img {
+  width: 100%;
+  height: auto;
+}
+
+.container .btn {
+  position: absolute;
+  top: 70%;
+  left: 80%;
+
+  background-color: #4334fc;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.container .btn:hover {
+  background-color: blue;
+}
+
+.navbar-transparent {
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+</style>
+
+
+
+</head>
+<body>
+
+
+<script>
+           function toggleDarkMode() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+
+            // Store the dark mode preference in local storage
+            var isDarkModeEnabled = element.classList.contains("dark-mode");
+            localStorage.setItem("darkModeEnabled", isDarkModeEnabled);
+        }
+
+        // Check if dark mode preference is stored in local storage
+        var isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
+        if (isDarkModeEnabled === "true") {
+            document.body.classList.add("dark-mode");
+        }
+</script>
+
+<nav class="navbar navbar-light bg-white navbar-transparent"> <!-- Changed "bg-light" to "bg-white" -->
+    <div class="container-fluid">
+      <h4 style="font-family: Century Gothic; color: green">Let's Chat</h4>
+
+      <form class="d-flex input-group w-auto">
+
+<i onclick="toggleDarkMode()" style="font-size: 30px;" class="bi bi-lamp-fill"></i>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a style="font-size:30px;" href="/index/"><i class="bi bi-arrow-left-square"></i></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </form>
+
+    </div>
+
+  </nav>
+
+<br><br>
+<div class="container-fluid">
+<a href="/signout/"><button class="btn btn-danger">Logout</button></a></div>
+
+<center>
+<div>
+<br>
+{% for dp in personal %}
+
+    <br><br>
+    {% if dp.image %}
+        <img class="rounded-circle" src="{{ dp.image.url }}" alt="Profile Image" style="width:20%">
+<br><br>
+    About
+<br>
+  <marquee width="60%" direction="left" height="50px">
+    <p style="font-family: ink free;color:blue">&nbsp; &nbsp; {{ dp.status }}</p>
+  </marquee>
+<br>
+
+    <a title="update" style="font-size:20px;color:green" href="{% url 'update' pk=dp.pk %}"><i class="bi bi-pencil-square"></i></a>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+    <a title="Delete" style="font-size:20px;color:red" href="{% url 'delete' pk=dp.pk %}"> <i class="bi bi-trash3"></i></a>
+</form>
+
+    {% else %}
+        <p>No image available</p>
+    {% endif %}
+
+    <br><br>
+
+    <table>
+        <tr>
+    <th><i class="bi bi-person-circle"></i> </th>
+        <th style="font-family:Gabriola">&nbsp; &nbsp; {{ dp.user }}</th>
+</tr>
+
+          <tr>
+   <th> <i class="bi bi-envelope-paper"></i></th>   <th style="font-family:Calibri Light">&nbsp; &nbsp; {{ request.user.email }}</th>
+
+        </tr>
+
+</table>
+
+<br><br>
+
+{% empty %}
+
+    <br>
+    <div class="container">
+    <img class="rounded-circle" src="https://media.istockphoto.com/id/1316420668/vector/user-icon-human-person-symbol-social-profile-icon-avatar-login-sign-web-user-symbol.jpg?s=612x612&w=0&k=20&c=AhqW2ssX8EeI2IYFm6-ASQ7rfeBWfrFFV4E87SaFhJE=" alt="Profile Image" >
+    <a href="/create/"><button title="Add Pic" class="btn"><i class="bi bi-plus-square"></i></button></a>
+</div>
+    <br><br>
+    <table>
+        <tr>
+    <th><i class="bi bi-person-circle"></i> </th>
+        <th style="font-family:Gabriola">&nbsp; &nbsp; {{ request.user }}</th>
+</tr>
+
+          <tr>
+   <th> <i class="bi bi-envelope-paper"></i></th>   <th style="font-family:Calibri Light">&nbsp; &nbsp; {{ request.user.email }}</th>
+
+        </tr>
+
+</table>
+    {% endfor %}
+</div></center>
+
+
+</body>
+</html>

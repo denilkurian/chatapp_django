@@ -1,0 +1,66 @@
+body {
+  padding: 25px;
+  background-color: white;
+  color: black;
+  font-size: 25px;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+#dark-modes {
+ position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+}
+
+ .fixed-length-input {
+    width: 200px; /* Adjust the width as per your preference */
+    max-width: 200px; /* Fix the maximum width to ensure consistent length */
+  }
+
+
+
+
+#zoom {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 50%; /* Initially set the border-radius to 50% for a circular shape */
+}
+
+#zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(3.5);
+  clip-path: none; /* Remove any existing clip-path property */
+  border-radius: 0; /* Set the border-radius to 0 to make the image square on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
